@@ -1,0 +1,55 @@
+{
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch .NET Core API (Develop)",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "${workspaceFolder}/temp_data/bin/Debug/SimpleForex.API/SimpleForex.API.dll",
+      "preLaunchTask": "build",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\\\bNow listening on:\\\\s+(https?://\\\\S+)"
+      },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "launchBrowser": {
+        "enabled": true
+      }
+    },
+    // Launch on terminal using MOCK configuration to use In-Memory database
+    // dotnet run --configuration MOCK
+    {
+      "name": "Launch .NET Core API (MOCK)",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "${workspaceFolder}/temp_data/bin/MOCK/SimpleForex.Api/SimpleForex.Api.dll",
+      "preLaunchTask": "build-mock",
+      "args": ["--configuration", "MOCK"],
+      "cwd": "${workspaceFolder}",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "uriFormat": "http://127.0.0.1:8080",
+        "pattern": "listening on port ([0-9]+)"
+      },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "MOCK"
+      },
+      "launchBrowser": {
+        "enabled": true
+      }
+    },
+    {
+      "name": ".NET Core Attach",
+      "type": "coreclr",
+      "request": "attach",
+      "processId": "${command:pickProcess}"
+    }
+  ]
+}

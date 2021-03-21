@@ -28,6 +28,11 @@ namespace SimpleForex.Application.DTOs
         public string UserId { get; set; }
 
         /// <summary>
+        /// The Currency's primary key as a foreign key.
+        /// </summary>
+        public int CurrencyId { get; set; }
+
+        /// <summary>
         /// The Currency's instace related with this purchase. 
         /// </summary>
         public virtual CurrencyDTO Currency { get; set; }

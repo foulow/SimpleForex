@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SimpleForex.Core.Contracts
 {
-    public interface IRepository<TEntity> where TEntity : class, IEntity<Guid>
+    public interface IRepository<TEntity> where TEntity : class, IEntity<int>
     {
         IUnitOfWork GetTransaction();
 
@@ -19,7 +19,7 @@ namespace SimpleForex.Core.Contracts
         List<TEntity> Query(Func<TEntity, bool> query);
         List<TResult> Query<TResult>(Func<TEntity, bool> query,
             Func<TEntity, TResult> select)
-            where TResult : IEntity<Guid>;
+            where TResult : IEntity<int>;
         Task<List<TEntity>> QueryAsync(Func<TEntity, bool> query);
 
         bool Any(Func<TEntity, bool> query = null);

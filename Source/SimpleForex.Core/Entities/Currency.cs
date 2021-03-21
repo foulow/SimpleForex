@@ -8,7 +8,7 @@ namespace SimpleForex.Core.Entities
         /// <summary>
         /// Holds the International Currencies' code wich represents the monetary units been exchanged.
         /// For example:
-        ///     the currency's code for the American Dollar (USD) to Argentinan Peso (ARS) would be (USD-ARS)
+        ///     the currency's code for the American Dollar (USD) to Argentinan Peso (ARS) would be (USD_ARS)
         /// </summary>
         public string Code { get; set; }
     }

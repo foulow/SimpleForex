@@ -16,8 +16,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
+		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Core", "0 - Core", "{4FF2DD3A-2DB3-46CB-B187-304610308701}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Persistence", "1 - Persistence", "{ED2DAA59-73DD-4EDA-8997-A7178E9CC699}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Application", "2 - Application", "{6D60CCDF-D978-48E5-902C-DC9CC0856606}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - API", "3 - API", "{BEF2EB11-B0E8-4985-8313-92ACF41B456C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -107,6 +116,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0EDBBC2E-A0BC-4A9A-A764-19820E9D1B6B} = {BEF2EB11-B0E8-4985-8313-92ACF41B456C}
+		{1257F954-9E66-4588-B29F-0C2D4AA01654} = {4FF2DD3A-2DB3-46CB-B187-304610308701}
+		{D00110FD-F183-4B5D-B0E7-C59309954B39} = {ED2DAA59-73DD-4EDA-8997-A7178E9CC699}
+		{29D15693-06F4-4532-A64A-9B94DFCD84B6} = {6D60CCDF-D978-48E5-902C-DC9CC0856606}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5282F583-ED73-47ED-87DB-6900E345170D}

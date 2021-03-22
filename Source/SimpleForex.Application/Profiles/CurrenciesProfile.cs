@@ -5,7 +5,7 @@ using SimpleForex.Core.Entities;
 namespace SimpleForex.Application.Profiles
 {
     /// <summary>
-    /// ClientDto mapping configuration.
+    /// Currenies mapping configuration.
     /// </summary>
     public class CurrenciesProfile : Profile
     {

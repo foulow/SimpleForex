@@ -1,5 +1,6 @@
 using System;
 using FluentValidation;
+using SimpleForex.Application.Collections;
 using SimpleForex.Application.DTOs;
 
 namespace SimpleForex.API.Validations
@@ -23,7 +24,7 @@ namespace SimpleForex.API.Validations
                 .NotEmpty()
                 .MinimumLength(5)
                 .MaximumLength(25)
-                .Matches("/^[a-zA-Z0-9]{1,25}$/")
+                .Matches(Regexs.UserIdRegex)
                 .WithErrorCode("BR-1003");
 
             RuleFor(cp => cp.CurrencyId)

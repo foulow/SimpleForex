@@ -1,7 +1,7 @@
 using System;
 using FluentValidation;
-using SimpleForex.Application.Collections;
 using SimpleForex.Application.DTOs;
+using SimpleForex.Core.Collections;
 
 namespace SimpleForex.API.Validations
 {

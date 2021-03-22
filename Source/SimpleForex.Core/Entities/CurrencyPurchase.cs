@@ -16,7 +16,7 @@ namespace SimpleForex.Core.Entities
         /// <summary>
         /// The full date and time the transaction was completed.
         /// </summary>
-        public DateTime MadeOn { get; set; }
+        public DateTime MadeOn { get; set; } = DateTime.Now;
 
         /// <summary>
         /// The User's id. (Entity not stored on the DB).

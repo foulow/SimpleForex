@@ -2,8 +2,9 @@ using System;
 using System.Net.Http;
 using Ardalis.GuardClauses;
 using Newtonsoft.Json.Linq;
-using SimpleForex.Application.Collections;
 using SimpleForex.Application.DTOs;
+using SimpleForex.Core.Collections;
+using SimpleForex.Core.Contracts;
 
 namespace SimpleForex.Application.Services
 {
@@ -12,8 +13,18 @@ namespace SimpleForex.Application.Services
     /// </summary>
     public class QuotationWithURLService : BaseService<string, CurrencyQuotationDTO>
     {
+        private readonly ISupportedCurrencies _supportedCurrencies;
         private string _currencyCode;
         private string _sourceURL;
+
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
+        /// <param name="supportedCurrencies">The </param>
+        public QuotationWithURLService(ISupportedCurrencies supportedCurrencies)
+        {
+            _supportedCurrencies = supportedCurrencies;
+        }
 
         /// <inheritdoc/>
         public override CurrencyQuotationDTO RunService(string currencyCode)
@@ -21,7 +32,7 @@ namespace SimpleForex.Application.Services
             _currencyCode = currencyCode;
             Guard.Against.NullOrEmpty(_currencyCode, nameof(_currencyCode));
 
-            _sourceURL = SupportedCurrenciesURLs.URLs[currencyCode];
+            _sourceURL = _supportedCurrencies.GetCurrencyUrl(_currencyCode);
             Guard.Against.NullOrEmpty(_sourceURL, nameof(_sourceURL));
             Guard.Against.InvalidFormat(_sourceURL, nameof(_sourceURL), Regexs.URLRegex);
 

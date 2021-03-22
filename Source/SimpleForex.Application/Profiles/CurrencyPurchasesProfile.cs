@@ -1,5 +1,4 @@
 using AutoMapper;
-
 using SimpleForex.Application.DTOs;
 using SimpleForex.Core.Entities;
 

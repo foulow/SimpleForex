@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using Ardalis.GuardClauses;
 using AutoMapper;
@@ -31,9 +30,11 @@ namespace SimpleForex.Application.Commands
             var transaction = _repository.GetTransaction();
 
             var transactions = _repository
-                .Query(cp => cp.UserId == newCurrencyPurchase.UserId)
-                .GroupBy(cp => cp.CurrencyId,
-                    (id, currencyPurchases) => new List<CurrencyPurchase>(currencyPurchases));
+                .Query(cp => cp.UserId == newCurrencyPurchase.UserId &&
+                             cp.CurrencyId == model.CurrencyId)
+                .ToList();
+
+            var totalPurchased = transactions.Sum(cp => cp.Amount);
 
             _repository.Add(newCurrencyPurchase);
 

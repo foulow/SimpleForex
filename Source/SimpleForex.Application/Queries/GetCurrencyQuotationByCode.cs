@@ -1,3 +1,4 @@
+using System;
 using Ardalis.GuardClauses;
 using AutoMapper;
 using SimpleForex.Application.Collections;
@@ -28,14 +29,13 @@ namespace SimpleForex.Application.Queries
         {
             Guard.Against.Null(code, nameof(code));
 
-            var currency = _repository.Get(c => c.Code == code);
-
-            var currencyDto = _mapper.Map<CurrencyDTO>(currency);
+            if (!SuppotedCurrenciesServices.Services.ContainsKey(code))
+                throw new ArgumentException("The currency provided is not supported.");
 
             var quotationService = _serviceFactory
                 .MakeService(SuppotedCurrenciesServices.Services[code]);
 
-            var quotation = quotationService.RunService(currencyDto.Code) as CurrencyQuotationDTO;
+            var quotation = quotationService.RunService(code) as CurrencyQuotationDTO;
 
             return quotation;
         }

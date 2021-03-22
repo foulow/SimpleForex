@@ -1,12 +1,15 @@
 {
-	"version": "2.0.0",
-	"tasks": [
+  "version": "2.0.0",
+  "tasks": [
     {
       "type": "npm",
       "script": "publish",
       "problemMatcher": [],
       "label": "npm: publish",
-      "detail": "ng build --aot --build-optimizer --optimization"
+      "detail": "ng build --aot --build-optimizer --optimization",
+      "options": {
+        "cwd": "${workspaceFolder}/Source/SimpleForex.WebClient/"
+      }
     },
     {
       "type": "npm",
@@ -14,28 +17,40 @@
       "group": "build",
       "problemMatcher": [],
       "label": "npm: build",
-      "detail": "ng build"
+      "detail": "ng build",
+      "options": {
+        "cwd": "${workspaceFolder}/Source/SimpleForex.WebClient/"
+      }
     },
     {
       "type": "npm",
       "script": "e2e",
       "problemMatcher": [],
       "label": "npm: e2e",
-      "detail": "ng e2e"
+      "detail": "ng e2e",
+      "options": {
+        "cwd": "${workspaceFolder}/Source/SimpleForex.WebClient/"
+      }
     },
     {
       "type": "npm",
       "script": "install",
       "problemMatcher": [],
       "label": "npm: install",
-      "detail": "install dependencies from package"
+      "detail": "install dependencies from package",
+      "options": {
+        "cwd": "${workspaceFolder}/Source/SimpleForex.WebClient/"
+      }
     },
     {
       "type": "npm",
       "script": "serve",
       "problemMatcher": [],
       "label": "npm: serve",
-      "detail": "ng serve --host 127.0.0.1 --port 8081 --o"
+      "detail": "ng serve --host 127.0.0.1 --port 8081 --o",
+      "options": {
+        "cwd": "${workspaceFolder}/Source/SimpleForex.WebClient/"
+      }
     },
     {
       "type": "npm",
@@ -43,7 +58,10 @@
       "group": "test",
       "problemMatcher": [],
       "label": "npm: test",
-      "detail": "ng test"
+      "detail": "ng test",
+      "options": {
+        "cwd": "${workspaceFolder}/Source/SimpleForex.WebClient/"
+      }
     },
     {
       "type": "npm",
@@ -51,7 +69,10 @@
       "group": "build",
       "problemMatcher": [],
       "label": "npm: watch",
-      "detail": "ng serve --live-reload --host 127.0.0.1 --port 8081 --o"
+      "detail": "ng serve --live-reload --host 127.0.0.1 --port 8081 --o",
+      "options": {
+        "cwd": "${workspaceFolder}/Source/SimpleForex.WebClient/"
+      }
     }
   ]
 }

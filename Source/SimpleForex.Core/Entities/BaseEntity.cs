@@ -1,4 +1,4 @@
-using System;
+using SimpleForex.Core.Contracts;
 
 namespace SimpleForex.Core.Entities
 {
@@ -6,24 +6,9 @@ namespace SimpleForex.Core.Entities
     /// Represents a entity with the minimum information for the database.
     /// </summary>
     /// <typeparam name="T">The entities id type.</typeparam>
-    public abstract class BaseEntity<T> : Contracts.IEntity<T>
+    public abstract class BaseEntity<T> : IEntity<T>
     {
         /// <inheritdoc/>
         public T Id { get; set; }
-
-        /// <inheritdoc/>
-        public T CreatedBy { get; set; }
-
-        /// <inheritdoc/>
-        public DateTime CreatedDate { get; set; }
-
-        /// <inheritdoc/>
-        public T UpdatedBy { get; set; }
-
-        /// <inheritdoc/>
-        public DateTime UpdatedDate { get; set; }
-
-        /// <inheritdoc/>
-        public string DeleteFlag { get; set; }
     }
 }

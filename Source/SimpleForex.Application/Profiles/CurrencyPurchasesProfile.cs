@@ -5,6 +5,9 @@ using SimpleForex.Core.Entities;
 
 namespace SimpleForex.Application.Profiles
 {
+    /// <summary>
+    /// CurrenyPurchases mapping configuration.
+    /// </summary>
     public class CurrencyPurchasesProfile : Profile
     {
         public CurrencyPurchasesProfile()

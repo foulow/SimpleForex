@@ -1,5 +1,5 @@
 using System;
-using SimpleForex.Core.Contracts;
+using SimpleForex.Core.Contracts.Queries;
 
 namespace SimpleForex.Application.Queries
 {

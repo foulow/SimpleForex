@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 
-namespace SimpleForex.Core.Contracts
+namespace SimpleForex.Core.Contracts.Factories
 {
     public interface IRepositoryFactory
     {

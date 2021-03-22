@@ -2,7 +2,9 @@ using Microsoft.Extensions.DependencyInjection;
 using SimpleForex.API.Factories;
 using SimpleForex.Application.Commands;
 using SimpleForex.Application.Queries;
+using SimpleForex.Application.Services;
 using SimpleForex.Core.Contracts;
+using SimpleForex.Core.Contracts.Factories;
 using SimpleForex.Persistence.Services;
 
 namespace SimpleForex.API
@@ -16,14 +18,20 @@ namespace SimpleForex.API
 
         public static void ConfigIoCForQueries(this IServiceCollection services)
         {
-            services.AddScoped<GetCurrencyByCode>();
-            services.AddScoped<GetCurrencyPurchasesQuery>();
+            services.AddScoped<GetCurrencyQuotationByCode>();
+        }
+
+        public static void ConfigIoCForServices(this IServiceCollection services)
+        {
+            services.AddScoped<QuotationWithURLService>();
+            services.AddScoped<BRL_ARSQuotationService>();
         }
 
         public static void ConfigIoCForFactories(this IServiceCollection services)
         {
             services.AddScoped<ICommandFactory, CommandFactory>();
             services.AddScoped<IQueryFactory, QueryFactory>();
+            services.AddScoped<IServiceFactory, ServiceFactory>();
             services.AddScoped<IRepositoryFactory, RepositoryFactory>();
         }
 

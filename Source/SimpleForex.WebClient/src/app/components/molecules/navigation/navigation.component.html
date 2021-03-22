@@ -1,0 +1,48 @@
+<!-- Navigation bar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <!-- Home link -->
+    <app-link
+      variant="navbar-brand"
+      url="/"
+      content="Inicio"
+      title="Navegar a inicio"
+    ></app-link>
+
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      title="Mostrar u ocultar"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu bar -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <app-link
+            variant="nav-link"
+            url="/cotizaciones"
+            content="Cotizaciones"
+            title="Navegar a cotizaciones"
+          ></app-link>
+        </li>
+        <li class="nav-item">
+          <app-link
+            variant="nav-link"
+            url="/compra"
+            content="Compra"
+            title="Navegar a compras"
+          ></app-link>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

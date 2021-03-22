@@ -51,6 +51,7 @@ namespace SimpleForex.API
 
             services.ConfigIoCServices();
             services.ConfigIoCForFactories();
+            services.ConfigIoCForServices();
             services.ConfigIoCForCommands();
             services.ConfigIoCForQueries();
 

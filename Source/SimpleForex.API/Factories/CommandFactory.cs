@@ -1,6 +1,7 @@
 using System;
 using Microsoft.Extensions.DependencyInjection;
-using SimpleForex.Core.Contracts;
+using SimpleForex.Core.Contracts.Commands;
+using SimpleForex.Core.Contracts.Factories;
 
 namespace SimpleForex.API.Factories
 {

@@ -3,6 +3,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using SimpleForex.Core.Contracts;
+using SimpleForex.Core.Contracts.Factories;
 
 namespace SimpleForex.API.Controllers
 {
@@ -17,7 +18,6 @@ namespace SimpleForex.API.Controllers
         protected readonly IRepositoryFactory _repositoryFactory;
         protected readonly IUnitOfWork _unitOfWork;
         protected readonly IMapper _mapper;
-
         /// <summary>
         /// This is the default constructor. Is where the dependencies get injected.
         /// </summary>

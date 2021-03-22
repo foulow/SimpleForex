@@ -1,11 +1,15 @@
+using System;
+using System.Threading.Tasks;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Serilog;
 using SimpleForex.API.Validations;
 using SimpleForex.Application.Profiles;
 using SimpleForex.Persistence;
@@ -66,6 +70,26 @@ namespace SimpleForex.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseExceptionHandler(errorApp =>
+            {
+                errorApp.Run(async context =>
+                {
+                    context.Response.StatusCode = 500;
+                    context.Response.ContentType = "*/*";
+
+                    var exceptionHandlerPathFeature =
+                        context.Features.Get<IExceptionHandlerPathFeature>();
+
+                    if (exceptionHandlerPathFeature?.Error is Exception ex)
+                    {
+                        await Task.Run(() =>
+                        {
+                            Log.Fatal("Server-side Error: {0}", ex.Message);
+                        });
+                    }
+                });
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

@@ -3,6 +3,7 @@ using SimpleForex.API.Factories;
 using SimpleForex.Application.Commands;
 using SimpleForex.Application.Queries;
 using SimpleForex.Application.Services;
+using SimpleForex.Core.Collections;
 using SimpleForex.Core.Contracts;
 using SimpleForex.Core.Contracts.Factories;
 using SimpleForex.Persistence.Services;
@@ -23,8 +24,9 @@ namespace SimpleForex.API
 
         public static void ConfigIoCForServices(this IServiceCollection services)
         {
-            services.AddScoped<QuotationWithURLService>();
-            services.AddScoped<BRL_ARSQuotationService>();
+            services.AddScoped<ISupportedCurrencies, SupportedCurrencies>();
+            services.AddScoped(typeof(QuotationWithURLService));
+            services.AddScoped(typeof(BRL_ARSQuotationService));
         }
 
         public static void ConfigIoCForFactories(this IServiceCollection services)

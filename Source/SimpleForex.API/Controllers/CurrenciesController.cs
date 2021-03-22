@@ -11,13 +11,13 @@ namespace SimpleForex.API.Controllers
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
-    public class CurrencyPurchasesController : BaseController
+    public class CurrenciesController : BaseController
     {
         /// <summary>
         /// Main construcctor for the CurrencyPurchaseController.
         /// </summary>
         /// <param name="serviceProvider">API's IoC Container.</param>
-        public CurrencyPurchasesController(IServiceProvider serviceProvider)
+        public CurrenciesController(IServiceProvider serviceProvider)
             : base(serviceProvider) { }
 
         /// <summary>
@@ -29,8 +29,19 @@ namespace SimpleForex.API.Controllers
         public IActionResult GetCurrencyQuoutationByCode([FromRoute, FromQuery] string code)
         {
             var getQuotationByCode = _queryFactory.MakeQuery<GetCurrencyQuotationByCode>();
+            CurrencyQuotationDTO currency;
 
-            var currency = getQuotationByCode.Execute(code);
+            try
+            {
+                currency = getQuotationByCode.Execute(code);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(new
+                {
+                    Error = ex.Message
+                });
+            }
 
             return Ok(currency);
         }
@@ -40,14 +51,21 @@ namespace SimpleForex.API.Controllers
         /// </summary>
         /// <param name="currencyPurchase">The currency purchase DTO.</param>
         /// <returns>A HTTPResponse with the proper status code and message base on the request provided.</returns>
-        [HttpPost]
-        public IActionResult CreateCurrencyPurchase([FromBody] CurrencyPurchaseDTO currencyPurchase)
+        [HttpPost("{code}")]
+        public IActionResult CreateCurrencyPurchase([FromRoute, FromQuery] string code, [FromBody] CurrencyPurchaseCreateDTO currencyPurchase)
         {
             var createPurchase = _commandFactory.MakeCommand<CreateCurrencyPurchaseCommand>();
 
             try
             {
-                createPurchase.Execute(currencyPurchase);
+                createPurchase.Execute((code, currencyPurchase));
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(new
+                {
+                    Error = ex.Message
+                });
             }
             catch (MethodAccessException ex)
             {

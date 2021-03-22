@@ -18,6 +18,7 @@ namespace SimpleForex.Application.Queries
         public GetCurrencyQuotationByCode(IRepository<Currency> repository, IServiceFactory serviceFactory, IMapper mapper)
         {
             Guard.Against.Null(repository, nameof(repository));
+            Guard.Against.Null(serviceFactory, nameof(serviceFactory));
             Guard.Against.Null(mapper, nameof(mapper));
 
             _repository = repository;
@@ -32,10 +33,18 @@ namespace SimpleForex.Application.Queries
             if (!SuppotedCurrenciesServices.Services.ContainsKey(code))
                 throw new ArgumentException("The currency provided is not supported.");
 
-            var quotationService = _serviceFactory
-                .MakeService(SuppotedCurrenciesServices.Services[code]);
+            var currency = _repository.Get(c => c.Code == code);
 
-            var quotation = quotationService.RunService(code) as CurrencyQuotationDTO;
+            var currencyDto = _mapper.Map<CurrencyDTO>(currency);
+
+            var serviceName = SuppotedCurrenciesServices.Services[code];
+            var quotationService = _serviceFactory
+                .MakeService<CurrencyQuotationDTO>(serviceName);
+
+            var quotation = quotationService.RunService(code);
+
+            quotation.Id = currency.Id;
+            quotation.Code = code;
 
             return quotation;
         }

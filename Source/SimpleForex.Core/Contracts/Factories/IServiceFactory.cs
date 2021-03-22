@@ -13,6 +13,6 @@ namespace SimpleForex.Core.Contracts.Factories
         /// </summary>
         /// <param name="instanceName">The name of the class to be instanciated.</param>
         /// <returns>An IService instance.</returns>
-        IService<string, IEntity<int>> MakeService(string instanceName);
+        IService<TEntity> MakeService<TEntity>(string instanceName) where TEntity : IEntity<int>;
     }
 }

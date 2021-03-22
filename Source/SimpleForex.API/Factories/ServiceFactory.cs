@@ -1,5 +1,6 @@
 using System;
-using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
+using Ardalis.GuardClauses;
 using SimpleForex.Core.Contracts;
 using SimpleForex.Core.Contracts.Factories;
 using SimpleForex.Core.Contracts.Services;
@@ -23,11 +24,16 @@ namespace SimpleForex.API.Factories
         }
 
         /// <inheritdoc/>
-        public IService<string, IEntity<int>> MakeService(string instanceName)
+        public IService<TEntity> MakeService<TEntity>(string instanceName) where TEntity : IEntity<int>
         {
-            var result = _serviceProvider.GetRequiredService(Type.GetType(instanceName));
+            Guard.Against.NullOrEmpty(instanceName, nameof(instanceName));
 
-            return result as IService<string, IEntity<int>>;
+            var assembly = Assembly.Load("SimpleForex.Application");
+            var _type = assembly.GetType("SimpleForex.Application.Services." + instanceName);
+            var result = _serviceProvider.GetService(_type);
+            var service = result as IService<TEntity>;
+
+            return service;
         }
     }
 }

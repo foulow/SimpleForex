@@ -7,10 +7,10 @@ namespace SimpleForex.Application.Services
     /// Represents a base service abstract class.
     /// </summary>
     /// <typeparam name="TResult">Service returned result type.</typeparam>
-    public abstract class BaseService<TParam, TResult> : IService<TParam, TResult>
+    public abstract class BaseService<TResult> : IService<TResult>
         where TResult : IEntity<int>
     {
         /// <inheritdoc/>
-        public abstract TResult RunService(TParam param);
+        public abstract TResult RunService(string param);
     }
 }

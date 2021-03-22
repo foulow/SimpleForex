@@ -7,7 +7,7 @@ using SimpleForex.Core.Contracts.Factories;
 
 namespace SimpleForex.Application.Services
 {
-    public class BRL_ARSQuotationService : BaseService<string, CurrencyQuotationDTO>
+    public class BRL_ARSQuotationService : BaseService<CurrencyQuotationDTO>
     {
         private readonly ISupportedCurrencies _supportedCurrencies;
         private readonly IServiceFactory _serviceFactory;
@@ -35,7 +35,7 @@ namespace SimpleForex.Application.Services
                 Guard.Against.NullOrEmpty(_sourceURL, nameof(_sourceURL));
                 Guard.Against.InvalidFormat(_sourceURL, nameof(_sourceURL), Regexs.URLRegex);
 
-                var quotationWithURL = _serviceFactory.MakeService(nameof(QuotationWithURLService));
+                var quotationWithURL = _serviceFactory.MakeService<CurrencyQuotationDTO>(nameof(QuotationWithURLService));
                 var USD_ARSQuotation = quotationWithURL.RunService(USD_ARSCode) as CurrencyQuotationDTO;
 
                 var resutl = GetCurrencyQuotationBaseOnOther(USD_ARSQuotation);

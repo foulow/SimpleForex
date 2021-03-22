@@ -15,7 +15,6 @@ namespace SimpleForex.Application.Collections
             #region Forex resvice URLs for the Argentinian Peso.
             [Enum.GetName(typeof(SupportedCurrenciesCodes), SupportedCurrenciesCodes.USD_ARS)] =
             nameof(QuotationWithURLService),
-
             // TODO: Include external service url
             [Enum.GetName(typeof(SupportedCurrenciesCodes), SupportedCurrenciesCodes.BRL_ARS)] =
             nameof(BRL_ARSQuotationService),

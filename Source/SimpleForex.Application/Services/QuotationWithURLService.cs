@@ -11,7 +11,7 @@ namespace SimpleForex.Application.Services
     /// <summary>
     /// Service to get a currecny quotation using an externar API service or URL.
     /// </summary>
-    public class QuotationWithURLService : BaseService<string, CurrencyQuotationDTO>
+    public class QuotationWithURLService : BaseService<CurrencyQuotationDTO>
     {
         private readonly ISupportedCurrencies _supportedCurrencies;
         private string _currencyCode;
@@ -53,7 +53,7 @@ namespace SimpleForex.Application.Services
 
             var responseString = response.Content.ReadAsStringAsync().Result;
 
-            var responseObject = JObject.Parse(responseString).ToObject<string[]>();
+            var responseObject = JArray.Parse(responseString).ToObject<string[]>();
 
             var result = new CurrencyQuotationDTO
             {

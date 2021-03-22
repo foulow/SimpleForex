@@ -1,10 +1,14 @@
 using System;
 using System.Collections.Generic;
 using SimpleForex.Application.Services;
+using SimpleForex.Core.Collections;
 
 namespace SimpleForex.Application.Collections
 {
-    public static class SuppotedCurrenciesServices
+    /// <summary>
+    /// 
+    /// </summary>
+    public class SuppotedCurrenciesServices
     {
         public static readonly Dictionary<string, string> Services = new Dictionary<string, string>()
         {

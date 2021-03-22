@@ -1,10 +1,9 @@
-﻿{
+{
   "$schema": "http://json.schemastore.org/launchsettings.json",
   "profiles": {
     "SimpleForex.API.MOCK": {
       "commandName": "Project",
-      "launchBrowser": true,
-      "launchUrl": "swagger",
+      "commandLineArgs": "-c MOCK",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "MOCK"
       },
@@ -23,7 +22,6 @@
     },
     "SimpleForex.API.Production": {
       "commandName": "Project",
-      "launchBrowser": false,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Production"
       },

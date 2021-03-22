@@ -1,0 +1,109 @@
+<div class="d-flex flex-column text-center">
+  <div class="d-flex flex-column my-auto mx-2 mx-md-5 py-5">
+    <!-- Title -->
+    <app-title variant="display-4 mb-3" content="Cambio de divisas"></app-title>
+
+    <!-- Refresh Section -->
+    <div class="d-flex flex-column flex-md-row bg-primary text-white mb-3">
+      <div class="col text-md-start px-3 my-3">
+        <strong>TRADE MARKET OPPORTUNITIES 24 HOURS</strong>
+      </div>
+      <button class="btn btn-secondary">Refrescar</button>
+    </div>
+
+    <!-- Tab Buttons -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link active"
+          data-bs-toggle="tab"
+          data-bs-target="#prices"
+          type="button"
+          role="tab"
+          aria-controls="prices"
+          aria-selected="false"
+        >
+          USD
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          data-bs-toggle="tab"
+          data-bs-target="#prices"
+          type="button"
+          role="tab"
+          aria-controls="prices"
+          aria-selected="false"
+        >
+          BRL
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          data-bs-toggle="tab"
+          data-bs-target="#information"
+          type="button"
+          role="tab"
+          aria-controls="information"
+          aria-selected="false"
+        >
+          +
+        </button>
+      </li>
+    </ul>
+
+    <!-- Prices Container -->
+    <div id="price-container" class="tab-content mb-5">
+      <!-- Prices -->
+      <div id="prices" class="tab-pane fade show active" role="tabpanel">
+        <div class="d-flex flex-column flex-md-row p-3 p-md-5">
+          <div class="col text-start mb-5 mb-md-0">
+            <app-title
+              variant="display-3 col fw-bold"
+              content="USD/ARG"
+            ></app-title>
+            <app-title
+              variant="col fs-4"
+              content="Dolares Estadounidenses/Pesos Argentinos"
+            ></app-title>
+          </div>
+
+          <div class="col">
+            <a
+              class="btn btn-outline-secondary col-6"
+              type="button"
+              href="/compra"
+            >
+              <app-title
+                variant="display-4 d-block fw-bold"
+                content="78.05"
+              ></app-title>
+              <app-title variant="fs-4" content="Compra"></app-title>
+            </a>
+            <button class="btn btn-outline-secondary col-6">
+              <app-title
+                variant="display-4 d-block fw-bold"
+                content="65.45"
+              ></app-title>
+              <app-title variant="fs-4" content="Venta"></app-title>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Information -->
+      <div
+        id="information"
+        class="tab-pane fade d-flex p-3 p-md-5"
+        role="tabpanel"
+      >
+        <app-title
+          variant="col fw-bold fs-4 my-auto"
+          content="Próximamente estarán disponible mas divisas."
+        ></app-title>
+      </div>
+    </div>
+  </div>
+</div>

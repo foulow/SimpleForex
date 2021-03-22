@@ -28,7 +28,7 @@ In the root directory of the repository. Open a command prompt of your choice an
   cd Source/
   dotnet tool install --global dotnet-ef
   dotnet build
-  dotnet ef database update --project ./SimpleForex.Api
+  dotnet ef database update --project ./SimpleForex.API
 ```
 
 #### 2. _install node modules_
@@ -46,19 +46,19 @@ To run the API and Angular projects, you will need to open a command prompt for 
 
 ```bash
   cd Source/
-  dotnet run --project ./SimpleForex.Api
+  dotnet run --project ./SimpleForex.API
 ```
 
 also you can pass an application argument `migrate` to make the initial migration and run the API.
 
 ```bash
-  dotnet run --project ./SimpleForex.Api -- migrate
+  dotnet run --project ./SimpleForex.API -- migrate
 ```
 
 additionally you can pass the argument `--configuration` to use `SQLIte` instead of `SQLServer` data provider.
 
 ```bash
-  dotnet run --project ./SimpleForex.Api -c MOCK -- migrate
+  dotnet run --project ./SimpleForex.API -c MOCK -- migrate
 ```
 
 if you are using **Visual Studio Code** you can launch the debugger by pressing:
@@ -82,8 +82,8 @@ if you are using **Visual Studio Code** you can run the task `npm: serve - Sourc
 
 This is a demo application using .NET Core 3.1 and Angular 2+. Consist on a foreign currencies consult/purchase using the argentina monetary unit. (ARS) each user has a limit on the amount of foreign currency they can purchase in a month:
 
--   200 for the American Dollars (USD)
--   300 for the Brazilian Real (BRL)
+- 200 for the American Dollars (USD)
+- 300 for the Brazilian Real (BRL)
 
 > More foreign currencies will be added in the future. like the Canadian Dollar (CAD)
 
@@ -98,18 +98,18 @@ Here are some information about the architectures, code principles, design patte
 
 #### Code principles
 
--   Clean
--   SOLID
--   Defensive Coding
+- Clean
+- SOLID
+- Defensive Coding
 
 #### Design patterns
 
--   Command
--   Factory
--   Builder
--   Dependency Injection
--   Repository
--   Unit of Work
+- Command
+- Factory
+- Builder
+- Dependency Injection
+- Repository
+- Unit of Work
 
 #### Libraries
 

@@ -1,0 +1,14 @@
+<li class="nav-item" role="presentation">
+  <button
+    [class]="variant"
+    [title]="title"
+    [attr.data-bs-target]="'#' + target"
+    [attr.aria-controls]="target"
+    [attr.aria-selected]="isActive"
+    data-bs-toggle="tab"
+    type="button"
+    role="tab"
+  >
+    {{ content }}
+  </button>
+</li>

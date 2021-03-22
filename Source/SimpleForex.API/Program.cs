@@ -63,12 +63,17 @@ namespace SimpleForex.API
                 var services = serviceScope.ServiceProvider;
                 var dbConfigContext = services.GetRequiredService<ApplicationDBContext>();
 
-                Log.Information("Migratting database...");
+                Log.Information("Stating migration process...");
                 if (!dbConfigContext.Database.EnsureCreated())
                 {
                     dbConfigContext.Database.Migrate();
                 }
-                Log.Information("Database migrated.");
+
+                if (dbConfigContext.IsDataFetched() != DBState.Fetched)
+                {
+                    dbConfigContext.FetchDataBase();
+                }
+                Log.Information("Migration precess complited.");
             }
         }
     }

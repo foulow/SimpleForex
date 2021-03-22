@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using SimpleForex.API.Validations;
 using SimpleForex.Application.Profiles;
 using SimpleForex.Persistence;
@@ -41,7 +42,8 @@ namespace SimpleForex.API
                 options =>
                 {
                     options.Filters.Add<ValidationResultAttribute>();
-                });
+                })
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CurrencyPurchaseDTOValidation>());
 
             services.AddHttpContextAccessor();
 
@@ -55,7 +57,10 @@ namespace SimpleForex.API
             services.ConfigIoCForCommands();
             services.ConfigIoCForQueries();
 
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "SimpleForex.API", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,8 +72,12 @@ namespace SimpleForex.API
             }
 
             app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json",
-                "SimpleForex.API"));
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json",
+                    "SimpleForex.API");
+                c.RoutePrefix = string.Empty;
+            });
 
             app.UseHttpsRedirection();
 

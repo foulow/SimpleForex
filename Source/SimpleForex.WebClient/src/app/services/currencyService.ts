@@ -21,20 +21,20 @@ export const REFRESH = 'REFRESH';
   providedIn: 'root',
 })
 export class CurrencyService {
-  _currencyQuotation: CurrencyQuotationDTO | undefined;
-  _currencyPurchase: CurrencyPurchaseDTO | undefined;
-  _currencyCode: string;
+  currencyQuotation: CurrencyQuotationDTO;
+  currencyPurchase: CurrencyPurchaseDTO;
+  currencyCode: string;
 
   constructor(private http: HttpClient, private store: Store<AppStore>) {
-    this._currencyQuotation = undefined;
-    this._currencyPurchase = undefined;
-    this._currencyCode = 'USD_ARS';
+    this.currencyQuotation = undefined;
+    this.currencyPurchase = undefined;
+    this.currencyCode = 'USD_ARS';
 
     // get call every time the state changes.
     this.store.subscribe((state) => {
-      this._currencyQuotation = state.currencyQuotation;
-      this._currencyPurchase = state.currencyPurchase;
-      this._currencyCode = state.currencyCode;
+      this.currencyQuotation = state.currencyQuotation;
+      this.currencyPurchase = state.currencyPurchase;
+      this.currencyCode = state.currencyCode;
     });
   }
 

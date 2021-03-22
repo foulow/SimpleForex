@@ -1,7 +1,7 @@
-using SimpleForex.Core.Entities;
-using SimpleForex.Persistence.Setup;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using SimpleForex.Core.Entities;
+using SimpleForex.Persistence.Setup;
 
 namespace SimpleForex.Persistence
 {
@@ -29,12 +29,12 @@ namespace SimpleForex.Persistence
         /// <summary>
         /// ORM access to the data base table Clients.
         /// </summary>
-        public virtual DbSet<Currency> Clients { get; set; }
+        public virtual DbSet<Currency> Currencies { get; set; }
 
         /// <summary>
         /// ORM access to the data base table Addresses.
         /// </summary>
-        public virtual DbSet<CurrencyPurchase> Addresses { get; set; }
+        public virtual DbSet<CurrencyPurchase> CurrencyPurchases { get; set; }
         public IConfiguration Configuration { get; }
 
 

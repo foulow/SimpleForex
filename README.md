@@ -28,7 +28,7 @@ In the root directory of the repository. Open a command prompt of your choice an
   cd Source/
   dotnet tool install --global dotnet-ef
   dotnet build
-  dotnet ef database update --project ./SimpleForex.API
+  dotnet ef database update --project ./Source/SimpleForex.API
 ```
 
 #### 2. _install node modules_
@@ -46,19 +46,19 @@ To run the API and Angular projects, you will need to open a command prompt for 
 
 ```bash
   cd Source/
-  dotnet run --project ./SimpleForex.API
+  dotnet run --project ./Source/SimpleForex.API
 ```
 
 also you can pass an application argument `migrate` to make the initial migration and run the API.
 
 ```bash
-  dotnet run --project ./SimpleForex.API -- migrate
+  dotnet run --project ./Source/SimpleForex.API -- migrate
 ```
 
 additionally you can pass the argument `--configuration` to use `SQLIte` instead of `SQLServer` data provider.
 
 ```bash
-  dotnet run --project ./SimpleForex.API -c MOCK -- migrate
+  dotnet run --project ./Source/SimpleForex.API -c MOCK -- migrate
 ```
 
 if you are using **Visual Studio Code** you can launch the debugger by pressing:
@@ -115,13 +115,13 @@ Here are some information about the architectures, code principles, design patte
 
 | API                 | Web Client |
 | :------------------ | :--------- |
-| EntityFrameworkCore |            |
-| FluentValidations   |            |
-| AutoMapper          |            |
-| Serilog             |            |
-| GuardClauses        |            |
-| OpenApi             |            |
-| Newtonsoft.Json     |            |
+| EntityFrameworkCore | lottie-web |
+| FluentValidations   | ngx-toastr |
+| AutoMapper          | bootstrap  |
+| Serilog             | ngrx/store |
+| GuardClauses        | angular/forms |
+| OpenApi             | angular/router |
+| Newtonsoft.Json     | ngx-lottie |
 
 #### Have a great time
 

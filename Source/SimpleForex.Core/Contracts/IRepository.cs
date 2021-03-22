@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace SimpleForex.Core.Contracts
 {
+    /// <summary>
+    /// Represents a base repository interface.
+    /// </summary>
+    /// <typeparam name="TEntity"><typeparamref name="TEntity"/></typeparam>
     public interface IRepository<TEntity> where TEntity : class, IEntity<int>
     {
         IUnitOfWork GetTransaction();

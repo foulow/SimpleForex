@@ -1,4 +1,4 @@
-﻿namespace SimpleForex.Core.Contracts
+namespace SimpleForex.Core.Contracts.Queries
 {
     /// <summary>
     /// Represents an async query.
@@ -14,9 +14,4 @@
         /// <returns><typeparamref name="TResult"/></returns>
         TResult Execute(TQuery query);
     }
-
-    /// <summary>
-    /// Represent a query object
-    /// </summary>
-    public interface IQueryBase { }
 }

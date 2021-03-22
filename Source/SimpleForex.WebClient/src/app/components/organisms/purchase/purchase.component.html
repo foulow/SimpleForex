@@ -1,0 +1,77 @@
+<div class="container d-flex flex-column text-center">
+  <div class="d-flex flex-column my-auto mx-2 mx-md-5 py-5">
+    <!-- Title -->
+    <app-title variant="display-4 mb-3" content="Compra de divisas"></app-title>
+
+    <!-- Form -->
+    <form [formGroup]="form" (ngSubmit)="purchaseCurrency()">
+      <!-- user id -->
+      <div class="input-group input-group-lg mb-3">
+        <span class="input-group-text">
+          <i
+            class="fas fa-coins"
+            [class.green-icon]="this.form.get('code')?.valid"
+            [class.red-icon]="
+              this.form.get('code')?.invalid && this.form.get('code')?.touched
+            "
+          ></i>
+        </span>
+        <select class="form-select" formControlName="code" placeholder="MONEDA">
+          <option value="USD">Dolares</option>
+          <option value="RAL">Reales</option>
+        </select>
+      </div>
+
+      <!-- user id -->
+      <div class="input-group input-group-lg mb-3">
+        <span class="input-group-text">
+          <i
+            class="fas fa-user-circle"
+            [class.green-icon]="this.form.get('userId')?.valid"
+            [class.red-icon]="
+              this.form.get('userId')?.invalid &&
+              this.form.get('userId')?.touched
+            "
+          ></i>
+        </span>
+        <input
+          type="text"
+          formControlName="userId"
+          class="form-control"
+          placeholder="USER ID"
+        />
+      </div>
+
+      <!-- amount -->
+      <div class="input-group input-group-lg mb-3">
+        <span class="input-group-text">
+          <i
+            class="fas fa-credit-card"
+            [class.green-icon]="this.form.get('amount')?.valid"
+            [class.red-icon]="
+              this.form.get('amount')?.invalid &&
+              this.form.get('amount')?.touched
+            "
+          ></i>
+        </span>
+        <input
+          type="text"
+          formControlName="amount"
+          class="form-control"
+          placeholder="AMOUNT"
+        />
+      </div>
+
+      <!-- button -->
+      <div class="d-grid gap-2">
+        <button
+          [disabled]="form.invalid"
+          class="btn btn-success btn-lg"
+          type="submit"
+        >
+          <i class="fas fa-database"></i> &nbsp;Aceptar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

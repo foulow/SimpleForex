@@ -1,0 +1,18 @@
+<div [class]="variant">
+  <div class="card">
+    <a
+      [class]="'nav-link card-body text-white bg-secondary' + getCardVariant()"
+      [href]="url"
+      [title]="title"
+    >
+      <ng-lottie
+        [width]="width"
+        [height]="height"
+        [containerClass]="imageVariant"
+        [options]="options"
+        (animationCreated)="animationCreated($event)"
+      ></ng-lottie>
+      <p>{{ text }}</p>
+    </a>
+  </div>
+</div>

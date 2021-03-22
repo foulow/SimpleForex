@@ -1,93 +1,57 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "build",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "build",
-                "${workspaceFolder}/Source/SimpleForex.API/SimpleForex.API.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
-            ],
-            "problemMatcher": "$msCompile",
-            "detail": "dotnet build [options] <PROJECT | SOLUTION>"
-        },
-        {
-            "label": "build-mock",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "build",
-                "${workspaceFolder}/Source/SimpleForex.API/SimpleForex.API.csproj",
-                "--configuration",
-                "MOCK",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
-            ],
-            "problemMatcher": "$msCompile",
-            "detail": "dotnet build [options] <PROJECT | SOLUTION>"
-        },
-        {
-            "label": "publish",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "publish",
-                "${workspaceFolder}/Source/SimpleForex.API/SimpleForex.API.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
-            ],
-            "problemMatcher": "$msCompile",
-            "detail": "dotnet publish --Project [options]"
-        },
-        {
-            "label": "watch",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "watch",
-                "run",
-                "${workspaceFolder}/Source/SimpleForex.API/SimpleForex.API.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
-            ],
-            "problemMatcher": "$msCompile",
-            "detail": "dotnet watch run  --Project [options]"
-        },
-        {
-            "type": "npm",
-            "script": "build",
-            "path": "Source/SimpleForex.WebClient/",
-            "group": "build",
-            "problemMatcher": [],
-            "label": "npm: build - Source/SimpleForex.WebClient",
-            "detail": "vue-cli-service build"
-        },
-        {
-            "type": "npm",
-            "script": "install",
-            "path": "Source/SimpleForex.WebClient/",
-            "problemMatcher": [],
-            "label": "npm: install - Source/SimpleForex.WebClient",
-            "detail": "install dependencies from package"
-        },
-        {
-            "type": "npm",
-            "script": "lint",
-            "path": "Source/SimpleForex.WebClient/",
-            "problemMatcher": [],
-            "label": "npm: lint - Source/SimpleForex.WebClient",
-            "detail": "vue-cli-service lint"
-        },
-        {
-            "label": "npm: serve - Source/SimpleForex.WebClient",
-            "type": "npm",
-            "script": "serve",
-            "path": "Source/SimpleForex.WebClient/",
-            "problemMatcher": [],
-            "detail": "vue-cli-service serve"
-        }
-    ]
+	"version": "2.0.0",
+	"tasks": [
+    {
+      "type": "npm",
+      "script": "publish",
+      "problemMatcher": [],
+      "label": "npm: publish",
+      "detail": "ng build --aot --build-optimizer --optimization"
+    },
+    {
+      "type": "npm",
+      "script": "build",
+      "group": "build",
+      "problemMatcher": [],
+      "label": "npm: build",
+      "detail": "ng build"
+    },
+    {
+      "type": "npm",
+      "script": "e2e",
+      "problemMatcher": [],
+      "label": "npm: e2e",
+      "detail": "ng e2e"
+    },
+    {
+      "type": "npm",
+      "script": "install",
+      "problemMatcher": [],
+      "label": "npm: install",
+      "detail": "install dependencies from package"
+    },
+    {
+      "type": "npm",
+      "script": "serve",
+      "problemMatcher": [],
+      "label": "npm: serve",
+      "detail": "ng serve --host 127.0.0.1 --port 8081 --o"
+    },
+    {
+      "type": "npm",
+      "script": "test",
+      "group": "test",
+      "problemMatcher": [],
+      "label": "npm: test",
+      "detail": "ng test"
+    },
+    {
+      "type": "npm",
+      "script": "watch",
+      "group": "build",
+      "problemMatcher": [],
+      "label": "npm: watch",
+      "detail": "ng serve --live-reload --host 127.0.0.1 --port 8081 --o"
+    }
+  ]
 }

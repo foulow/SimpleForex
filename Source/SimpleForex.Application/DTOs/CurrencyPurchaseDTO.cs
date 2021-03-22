@@ -1,17 +1,13 @@
 using System;
+using SimpleForex.Core.Entities;
 
 namespace SimpleForex.Application.DTOs
 {
     /// <summary>
     /// Represents a DTO (Data Transfer Object) for the DB entity CurrencyPurchase.
     /// </summary>
-    public class CurrencyPurchaseDTO
+    public class CurrencyPurchaseDTO : BaseEntity<int>
     {
-        /// <summary>
-        /// The entity unique identifier.
-        /// </summary>
-        public int Id { get; set; }
-
         /// <summary>
         /// The Currency's foraign unit/s purchased by the User.
         /// </summary>

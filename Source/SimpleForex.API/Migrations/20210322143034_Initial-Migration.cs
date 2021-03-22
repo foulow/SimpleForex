@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SimpleForex.API.Migrations
@@ -8,7 +8,7 @@ namespace SimpleForex.API.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Clients",
+                name: "Currencies",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -17,11 +17,11 @@ namespace SimpleForex.API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Clients", x => x.Id);
+                    table.PrimaryKey("PK_Currencies", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Addresses",
+                name: "CurrencyPurchases",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -33,28 +33,28 @@ namespace SimpleForex.API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Addresses", x => x.Id);
+                    table.PrimaryKey("PK_CurrencyPurchases", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Addresses_Clients_CurrencyId",
+                        name: "FK_CurrencyPurchases_Currencies_CurrencyId",
                         column: x => x.CurrencyId,
-                        principalTable: "Clients",
+                        principalTable: "Currencies",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Addresses_CurrencyId",
-                table: "Addresses",
+                name: "IX_CurrencyPurchases_CurrencyId",
+                table: "CurrencyPurchases",
                 column: "CurrencyId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Addresses");
+                name: "CurrencyPurchases");
 
             migrationBuilder.DropTable(
-                name: "Clients");
+                name: "Currencies");
         }
     }
 }

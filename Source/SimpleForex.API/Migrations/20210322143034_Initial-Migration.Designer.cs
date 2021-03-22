@@ -10,7 +10,7 @@ using SimpleForex.Persistence;
 namespace SimpleForex.API.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20210322045619_Initial-Migration")]
+    [Migration("20210322143034_Initial-Migration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,7 +35,7 @@ namespace SimpleForex.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clients");
+                    b.ToTable("Currencies");
                 });
 
             modelBuilder.Entity("SimpleForex.Core.Entities.CurrencyPurchase", b =>
@@ -63,7 +63,7 @@ namespace SimpleForex.API.Migrations
 
                     b.HasIndex("CurrencyId");
 
-                    b.ToTable("Addresses");
+                    b.ToTable("CurrencyPurchases");
                 });
 
             modelBuilder.Entity("SimpleForex.Core.Entities.CurrencyPurchase", b =>

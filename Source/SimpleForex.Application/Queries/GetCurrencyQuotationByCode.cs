@@ -1,6 +1,7 @@
 using System;
 using Ardalis.GuardClauses;
 using AutoMapper;
+using Serilog;
 using SimpleForex.Application.Collections;
 using SimpleForex.Application.DTOs;
 using SimpleForex.Core.Contracts;
@@ -30,21 +31,33 @@ namespace SimpleForex.Application.Queries
         {
             Guard.Against.Null(code, nameof(code));
 
+            // Ensures the currency is supported.
+            Currency currency;
             if (!SuppotedCurrenciesServices.Services.ContainsKey(code))
                 throw new ArgumentException("The currency provided is not supported.");
 
-            var currency = _repository.Get(c => c.Code == code);
+            // Gets the currency id from the database.
+            try
+            {
+                currency = _repository.Get(c => c.Code == code);
+                Guard.Against.Null(currency, nameof(currency));
+            }
+            catch
+            {
+                Log.Error($"The Currency repository could not find the currency code: {code}, when it should.");
+                throw new ArgumentException("The currency provided is not supported.");
+            }
 
-            var currencyDto = _mapper.Map<CurrencyDTO>(currency);
-
+            // Gets the currency purchase price.
             var serviceName = SuppotedCurrenciesServices.Services[code];
             var quotationService = _serviceFactory
                 .MakeService<CurrencyQuotationDTO>(serviceName);
-
             var quotation = quotationService.RunService(code);
-
             quotation.Id = currency.Id;
-            quotation.Code = code;
+
+            // QUIT_PATH: When the currency is receved from a service other than `QuotationWithURLService`.
+            if (serviceName != "QuotationWithURLService")
+                quotation.Code = code;
 
             return quotation;
         }

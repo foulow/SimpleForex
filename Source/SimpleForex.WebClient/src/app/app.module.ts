@@ -23,8 +23,13 @@ import { TabButtonComponent } from './components/atoms/tab-button/tab-button.com
 
 //ngrx
 import { StoreModule } from '@ngrx/store';
-import { CurrencyService } from './services/currencyService';
-import { counterReducer } from './components/organisms/quotation/quotation.reducer';
+import { pageIdReducer } from './reducers/pageId.reducer';
+import {
+  currenciesQuotationReducer,
+  currencyQuotationReducer,
+} from './reducers/currencyQuotation.reducer';
+import { currencyCodeReducer } from './reducers/currencyCode.reducer';
+import { currencyPurchaseReducer } from './reducers/currencyPurchase.reducer';
 
 // Note we need a separate function as it's required
 // by the AOT compiler.
@@ -53,7 +58,13 @@ export function playerFactory() {
     ReactiveFormsModule,
     ToastrModule.forRoot(),
     LottieModule.forRoot({ player: playerFactory }),
-    StoreModule.forRoot({ quotation: counterReducer }),
+    StoreModule.forRoot({
+      pageId: pageIdReducer,
+      currencyCode: currencyCodeReducer,
+      currenciesQuotation: currenciesQuotationReducer,
+      currencyQuotation: currencyQuotationReducer,
+      currencyPurchase: currencyPurchaseReducer,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

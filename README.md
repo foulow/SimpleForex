@@ -25,16 +25,15 @@ In the root directory of the repository. Open a command prompt of your choice an
 > skip this step if you want to use in-memory database.
 
 ```bash
-  cd Source/
   dotnet tool install --global dotnet-ef
   dotnet build
-  dotnet ef database update --project ./Source/SimpleForex.API
+  dotnet ef database update --project ./Source/SimpleForex.API/
 ```
 
 #### 2. _install node modules_
 
 ```bash
-  cd SimpleForex.WebClient/
+  cd ./Source/SimpleForex.WebClient/
   npm install
 ```
 
@@ -45,9 +44,10 @@ To run the API and Angular projects, you will need to open a command prompt for 
 #### 1. _Running the API_
 
 ```bash
-  cd Source/
   dotnet run --project ./Source/SimpleForex.API
 ```
+
+> The database should already be migrated in order for the API to function correctly. use one of the migration options below. to do it.
 
 also you can pass an application argument `migrate` to make the initial migration and run the API.
 
@@ -55,7 +55,7 @@ also you can pass an application argument `migrate` to make the initial migratio
   dotnet run --project ./Source/SimpleForex.API -- migrate
 ```
 
-additionally you can pass the argument `--configuration` to use `SQLIte` instead of `SQLServer` data provider.
+additionally you can pass the argument `--configuration MOCK` or `-c MOCK` to use `SQLIte` instead of `SQLServer` as the persistence handler for a quick test.
 
 ```bash
   dotnet run --project ./Source/SimpleForex.API -c MOCK -- migrate
@@ -69,7 +69,7 @@ if you are using **Visual Studio Code** you can launch the debugger by pressing:
 
 ```bash
   cd Source/SimpleForex.WebClient/
-  npm run serve
+  ng serve --host 127.0.0.1 --port 8081 --o
 ```
 
 if you are using **Visual Studio Code** you can run the task `npm: serve - Source/SimpleForex.WebClient`, by using.
@@ -80,14 +80,21 @@ if you are using **Visual Studio Code** you can run the task `npm: serve - Sourc
 
 ### General information
 
-This is a demo application using .NET Core 3.1 and Angular 2+. Consist on a foreign currencies consult/purchase using the argentina monetary unit. (ARS) each user has a limit on the amount of foreign currency they can purchase in a month:
+This is a demo application using .NET Core 3.1 and Angular 2+. Consist on a currency exchange API/Web client for consulting and purchasing foreign currency units.
+
+Each currency is defined by its code, here is a list with the currently supported currencies.
+
+- American dollar (USD) / Argentinian peso (ARS) => USD_ARS
+- Brazilian Real (BRL) / Argentinian peso (ARS) => BRL_ARS
+
+> More foreign currencies will be added in the future. like the Canadian Dollar (CAD)
+> For more information about international monetary units go [here](https://es.wikipedia.org/wiki/ISO_4217#C%C3%B3digos_de_divisa_ISO_4217[6]%E2%80%8B).
+
+Each user has a limit on the amount of foreign currency they can purchase in a month:
 
 - 200 for the American Dollars (USD)
 - 300 for the Brazilian Real (BRL)
 
-> More foreign currencies will be added in the future. like the Canadian Dollar (CAD)
-
-Here are some information about the architectures, code principles, design patterns and libraries used in this project.
 
 #### Architectures
 

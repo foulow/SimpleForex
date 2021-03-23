@@ -73,7 +73,7 @@ namespace SimpleForex.API
                 {
                     dbConfigContext.FetchDataBase();
                 }
-                Log.Information("Migration precess complited.");
+                Log.Information("Migration precess completed.");
             }
         }
     }

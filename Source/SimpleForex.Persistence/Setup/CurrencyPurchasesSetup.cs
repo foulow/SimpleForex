@@ -16,9 +16,6 @@ namespace SimpleForex.Persistence.Setup
         public static void ConfigureCurrencyPurchases(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CurrencyPurchase>()
-                .HasKey(cp => cp.Id);
-
-            modelBuilder.Entity<CurrencyPurchase>()
                 .Property(cp => cp.Amount)
                 .HasColumnType("money")
                 .IsRequired();

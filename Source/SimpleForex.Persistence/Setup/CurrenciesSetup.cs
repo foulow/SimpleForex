@@ -16,9 +16,6 @@ namespace SimpleForex.Persistence.Setup
         public static void ConfigureCurrencies(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Currency>()
-                .HasKey(c => c.Id);
-
-            modelBuilder.Entity<Currency>()
                 .Property(c => c.Code)
                 .HasMaxLength(7)
                 .IsRequired();

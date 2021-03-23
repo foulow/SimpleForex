@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { CurrencyPurchaseDTO } from 'src/app/models/currencyPurchaseDTO';
+import { CurrencyPurchase } from 'src/app/models/currencyPurchase.model';
 import {
   CurrencyService,
   CurrencyServiceMock,
@@ -40,10 +40,10 @@ export class PurchaseComponent implements OnInit {
   ngOnInit(): void {}
 
   purchaseCurrency() {
-    const currencyPurchase: CurrencyPurchaseDTO = {
-      code: this.form.value.code,
-      userId: this.form.value.userId,
+    const currencyPurchase: CurrencyPurchase = {
       amount: this.form.value.amount,
+      userId: this.form.value.userId,
+      currencyId: this.form.value.currencyId,
     };
 
     this._currencyService.postCurrencyPurchase(currencyPurchase).subscribe(

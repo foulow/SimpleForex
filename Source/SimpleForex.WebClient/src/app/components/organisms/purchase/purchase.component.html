@@ -10,15 +10,20 @@
         <span class="input-group-text">
           <i
             class="fas fa-coins"
-            [class.green-icon]="this.form.get('code')?.valid"
+            [class.green-icon]="this.form.get('currencyId')?.valid"
             [class.red-icon]="
-              this.form.get('code')?.invalid && this.form.get('code')?.touched
+              this.form.get('currencyId')?.invalid &&
+              this.form.get('currencyId')?.touched
             "
           ></i>
         </span>
-        <select class="form-select" formControlName="code" placeholder="MONEDA">
-          <option value="USD">Dolares</option>
-          <option value="RAL">Reales</option>
+        <select
+          class="form-select"
+          formControlName="currencyId"
+          placeholder="MONEDA"
+        >
+          <option value="1">Dolares</option>
+          <option value="2">Reales</option>
         </select>
       </div>
 

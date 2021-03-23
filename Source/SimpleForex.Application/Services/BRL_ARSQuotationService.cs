@@ -58,7 +58,7 @@ namespace SimpleForex.Application.Services
                 Code = quotation.Code,
                 SellPrice = quotation.SellPrice / 4m,
                 PurchasePrice = quotation.PurchasePrice / 4m,
-                UpdateOn = quotation.UpdateOn
+                UpdatedOn = quotation.UpdatedOn
             };
 
             return result;

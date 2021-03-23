@@ -60,7 +60,7 @@ namespace SimpleForex.Application.Services
                 Code = _currencyCode,
                 SellPrice = decimal.Parse(responseObject[0]),
                 PurchasePrice = decimal.Parse(responseObject[1]),
-                UpdateOn = DateTime.Today.ToString("dd/MM/yyyy ") + DateTime.Now.ToString("hh:mm")
+                UpdatedOn = DateTime.Today.ToString("dd/MM/yyyy ") + DateTime.Now.ToString("hh:mm")
             };
 
             return result;

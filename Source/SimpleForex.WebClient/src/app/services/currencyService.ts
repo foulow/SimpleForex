@@ -1,17 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CurrencyPurchaseDTO } from '../models/currencyPurchaseDTO';
-import { CurrencyQuotationDTO } from '../models/currencyQuotationDTO';
+import { CurrencyPurchase } from '../models/currencyPurchase.model';
+import { CurrencyQuotation } from '../models/currencyQuotation.model';
 
 import { Action, Store } from '@ngrx/store';
 import { state } from '@angular/animations';
-
-interface AppStore {
-  currencyCode: string;
-  currencyQuotation: CurrencyQuotationDTO;
-  currencyPurchase: CurrencyPurchaseDTO;
-}
+import { AppState } from '../app.state';
+import {
+  GET_CURRENCY,
+  SET_CURRENCY,
+} from '../actions/currencyQuotation.actions';
 
 export const GET = 'GET';
 export const POST = 'POST';
@@ -21,35 +20,47 @@ export const REFRESH = 'REFRESH';
   providedIn: 'root',
 })
 export class CurrencyService {
-  currencyQuotation: CurrencyQuotationDTO;
-  currencyPurchase: CurrencyPurchaseDTO;
-  currencyCode: string;
+  currenciesQuotation: Observable<CurrencyQuotation[]>;
+  currencyQuotation: Observable<CurrencyQuotation>;
+  currencyPurchase: Observable<CurrencyPurchase>;
+  currencyCode: Observable<string>;
 
-  constructor(private http: HttpClient, private store: Store<AppStore>) {
-    this.currencyQuotation = undefined;
-    this.currencyPurchase = undefined;
-    this.currencyCode = 'USD_ARS';
-
-    // get call every time the state changes.
-    this.store.subscribe((state) => {
-      this.currencyQuotation = state.currencyQuotation;
-      this.currencyPurchase = state.currencyPurchase;
-      this.currencyCode = state.currencyCode;
-    });
+  constructor(private http: HttpClient, private store: Store<AppState>) {
+    this.currencyCode = this.store.select('currencyCode');
+    this.currenciesQuotation = this.store.select('currenciesQuotations');
+    this.currencyQuotation = this.store.select('currencyQuotations');
+    this.currencyPurchase = this.store.select('currencyPurchase');
   }
 
-  getCurrencyQuotation(): Observable<any> {
-    return this.http.get('http://127.0.0.1:8080/api/currecies', {
+  public getCurrencyQuotation(
+    currencyCode: string
+  ): Observable<CurrencyQuotation> {
+    return this.getCurrency(currencyCode);
+  }
+
+  public refreshQuotation(currencyCode: string): Observable<CurrencyQuotation> {
+    return this.getCurrency(currencyCode);
+  }
+
+  private getCurrency(currencyCode: string): Observable<CurrencyQuotation> {
+    var promise = this.http.get('http://127.0.0.1:8080/api/currecies', {
       params: {
-        code: this._currencyCode,
+        code: currencyCode,
       },
     });
+
+    promise.subscribe((observer) => {
+      const currency = observer.valueOf() as CurrencyQuotation;
+      this.store.dispatch(SET_CURRENCY({ currency: currency }));
+    });
+
+    return promise as Observable<CurrencyQuotation>;
   }
 
-  postCurrencyPurchase(): Observable<any> {
+  public postCurrencyPurchase(): Observable<any> {
     return this.http.post(
       'http://127.0.0.1:8080/api/currecies',
-      this._currencyPurchase
+      this.currencyPurchase
     );
   }
 }
@@ -60,19 +71,23 @@ export class CurrencyService {
 export class CurrencyServiceMock {
   constructor(private http: HttpClient) {}
 
-  getCurrencyQuotation(currencyCode: string): Observable<CurrencyQuotationDTO> {
-    return new Observable<CurrencyQuotationDTO>((observer) => {
-      const currency: CurrencyQuotationDTO = {
-        buy: 78.05,
-        sell: 80.52,
-        lastRequested: `Actualizado: ${new Date().toString()}`,
+  public getCurrencyQuotation(
+    currencyCode: string
+  ): Observable<CurrencyQuotation> {
+    return new Observable<CurrencyQuotation>((observer) => {
+      const currency: CurrencyQuotation = {
+        code: 'USD_ARS',
+        sellPrice: 80.52,
+        purchasePrice: 78.05,
+        updatedOn: `Actualizado: ${new Date().toString()}`,
+        id: 1,
       };
       observer.next(currency);
     });
   }
 
-  postCurrencyPurchase(
-    currencyPurchase: CurrencyPurchaseDTO
+  public postCurrencyPurchase(
+    currencyPurchase: CurrencyPurchase
   ): Observable<boolean> {
     return new Observable<boolean>((observer) => {
       console.log(currencyPurchase);

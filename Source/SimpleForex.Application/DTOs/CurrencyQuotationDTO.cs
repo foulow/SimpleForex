@@ -15,18 +15,18 @@ namespace SimpleForex.Application.DTOs
         public string Code { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public decimal SellPrice { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public decimal PurchasePrice { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
-        public string UpdateOn { get; set; }
+        public string UpdatedOn { get; set; }
     }
 }

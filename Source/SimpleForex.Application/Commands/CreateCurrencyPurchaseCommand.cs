@@ -60,7 +60,7 @@ namespace SimpleForex.Application.Commands
             var quotationService = _serviceFactory
                 .MakeService<CurrencyQuotationDTO>(serviceName);
             var quotation = quotationService.RunService(code);
-            var toBePurchase = quotation.PurchasePrice / model.Amount;
+            var toBePurchase = model.Amount / quotation.PurchasePrice;
 
             // Validates the user has not pass or will pass the limit set for the currency been purchased and updates the currency amount.
             if (totalPurchased != 0)
